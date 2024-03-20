@@ -10,6 +10,15 @@ public class BoundaryAfficherMarche {
 	}
 
 	public void afficherMarche(String nomAcheteur) {
-
+		String[] infosMarche = controlAfficherMarche.donnerInfosMarche();
+		if (infosMarche.length == 0) {
+			System.out.println("Le marche est vide, revenez plus tard.");
+		} else {
+			System.out.println(nomAcheteur + ", vous trouvez au marche : ");
+			int i = 0;
+			for(int j = 0; j < infosMarche.length-1; j++) {
+				System.out.println("-" + infosMarche[i] + i++ + " qui vend " + infosMarche[i] + i++ + " " + infosMarche[i] + i++); // greska
+			}
+		}
 	}
 }
