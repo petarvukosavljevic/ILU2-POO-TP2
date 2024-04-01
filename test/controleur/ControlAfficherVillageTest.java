@@ -6,18 +6,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import personnages.Chef;
+import personnages.Gaulois;
 import villagegaulois.Village;
 
 class ControlAfficherVillageTest {
 	
 	ControlAfficherVillage control;
-	ControlEmmenager control2;
+	Village village;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		Village village = new Village("Village de test", 5, 10);
+		village = new Village("Village de test", 5, 10);
 		Chef chef = new Chef("Chef", 1, village);
 		village.setChef(chef);
+		village.ajouterHabitant(new Gaulois("Asterix1", 10));
+		village.ajouterHabitant(new Gaulois("Asterix2", 10));
 		control = new ControlAfficherVillage(village);
 	}
 
@@ -26,22 +29,21 @@ class ControlAfficherVillageTest {
 		assertNotNull(control);
 	}
 
-//	@Test
-//	void testDonnerNomsVillageois() {
-//		for(int i = 1 ; i < 5 ; i++) {
-//			control2.ajouterGaulois("h", 3);
-//		}
-//		assertEquals(control.donnerNomsVillageois(), "h");
-//	}
+	@Test
+	void testDonnerNomsVillageois() {
+		assertArrayEquals(control.donnerNomsVillageois(), village.donnerVillageois());
+	}
 
 	@Test
 	void testDonnerNomVillage() {
 		assertEquals(control.donnerNomVillage(), "Village de test");
+		assertNotEquals(control.donnerNomVillage(), "Mauvais nom");
 	}
 
 	@Test
 	void testDonnerNbEtals() {
 		assertEquals(control.donnerNbEtals(), 10);
+		assertNotEquals(control.donnerNbEtals(), 3);
 	}
 
 }

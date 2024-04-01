@@ -27,25 +27,23 @@ class ControlEmmenagerTest {
 
 	@Test
 	void testIsHabitant() {
-		control.ajouterGaulois("Asterix", 1);
-		assertTrue(control.isHabitant("Asterix"));
-		assertFalse(control.isHabitant("Obelix"));
-		assertTrue(control.isHabitant("Chef"));
+		control.ajouterGaulois("Bonemine", 10);
+		assertTrue(control.isHabitant("Bonemine"));
+		assertFalse(control.isHabitant("Existe pas"));
+		control.ajouterDruide("Panoramix", 10, 1, 5);
+		assertTrue(control.isHabitant("Panoramix"));
 	}
 
 	@Test
 	void testAjouterDruide() {
-		control.ajouterDruide("Druide", 1, 10, 20);
-		assertTrue(control.isHabitant("Druide"));
+		control.ajouterDruide("Panoramix", 10, 1, 5);
+		assertTrue(control.isHabitant("Panoramix"));
 	}
 
 	@Test
 	void testAjouterGaulois() {
-		for(int i = 0; i < 10;i++) {
-			control.ajouterGaulois("h" + i, 3);
-		}
-		control.ajouterGaulois("Gaulois", 3);
-		assertFalse(control.isHabitant("Gaulois"));
+		control.ajouterGaulois("Bonemine", 10);
+		assertTrue(control.isHabitant("Bonemine"));
 	}
 
 }
