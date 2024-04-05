@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import personnages.Chef;
 import personnages.Gaulois;
+import villagegaulois.Etal;
 import villagegaulois.Village;
 
 class ControlLibererEtalTest {
@@ -37,14 +38,18 @@ class ControlLibererEtalTest {
 		village.ajouterHabitant(asterix2);
 		village.installerVendeur(asterix1, "fleurs", 10);
 		assertTrue(control.isVendeur("Asterix1"));
+		assertFalse(control.isVendeur("Asterix2"));
 	}
 
 	@Test
 	void testLibererEtal() {
 		Gaulois asterix1 = new Gaulois("Asterix1", 10);
+		Gaulois asterix2 = new Gaulois("Asterix2", 10);
 		village.ajouterHabitant(asterix1);
+		village.ajouterHabitant(asterix2);
 		village.installerVendeur(asterix1, "fleurs", 10);
-		assertArrayEquals(control.libererEtal("Asterix1"), village.rechercherEtal(asterix1).etatEtal());
+		assertArrayEquals(control.libererEtal("Asterix1"), controlTrouverEtalVendeur.trouverEtalVendeur("Asterix1").etatEtal());
+		assertArrayEquals(control.libererEtal("Asertix2"), null);
 	}
 
 }
