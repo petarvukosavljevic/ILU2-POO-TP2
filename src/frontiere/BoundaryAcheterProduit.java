@@ -14,6 +14,9 @@ public class BoundaryAcheterProduit {
 	}
 
 	public void acheterProduit(String nomAcheteur) {
+		if (!controlAcheterProduit.verifierIdentite(nomAcheteur)) {
+			System.out.println("Je suis desolee " + nomAcheteur + " mais il faut etre un habitant de notre village pour commencer ici.");
+		}
 		System.out.println("Quel produit voulez-vous acheter ?");
 		String produit = scan.nextLine();
 		Gaulois[] vendeurProduit = controlAcheterProduit.donnerVendeursProduit(produit);
@@ -21,10 +24,22 @@ public class BoundaryAcheterProduit {
 			System.out.println("Desole, personne ne vend ce produit au marche");
 		} else {
 			System.out.println("Chez quel commercant voulez-vous acheter des " + produit + "?\n");
-			for(int i = 0; i<vendeurProduit.length-1; i++) {
-				System.out.println(i+1 + " - " + vendeurProduit[i] + "\n");
+			int choix = -1;
+			do {
+				
+			String vendeursAvecProduit = controlAcheterProduit.vendeursAvecProduit(produit);
+			choix = Clavier.entrerEntier(vendeursAvecProduit.toString());
+			if(choix < 1 && choix > vendeurProduit.length) {
+				System.out.println("Aucun vendeur de " + produit + " dans cette etal! Choisissez un autre.\n");
+			} else {
+				System.out.println(nomAcheteur + " se deplace jusqu'a l'etal du vendeur " + vendeurProduit[choix-1].getNom()+".");
 			}
 			
+			} while(choix < 1 && choix > vendeurProduit.length);
+			System.out.println("Bonjour " + nomAcheteur + ".\n");
+			int quantiteSouhaite = Clavier.entrerEntier("Combien de " + produit + " voulez-vous acheter ?");
+			String acheterProduit = controlAcheterProduit.acheterProduit(nomAcheteur, produit, quantiteSouhaite, choix);
+			System.out.println(acheterProduit);
 		}
 	}
 }
