@@ -13,7 +13,7 @@ public class ControlAcheterProduit {
 			ControlTrouverEtalVendeur controlTrouverEtalVendeur,
 			Village village) {
 		this.village = village;
-		this.controlVerifierIdentite = controlVerifierIdentite;		//non utiliser
+		this.controlVerifierIdentite = controlVerifierIdentite;
 		this.controlTrouverEtalVendeur = controlTrouverEtalVendeur;
 	}
 	
