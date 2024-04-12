@@ -17,6 +17,7 @@ public class BoundaryLibererEtal {
 			if(donneesEtal[0] != null) {
 				System.out.println("Vous avez vendu " + donneesEtal[4] + " sur " + donneesEtal[3] + " " + donneesEtal[2] + ".");
 				System.out.println("En revoir " + nomVendeur + ", passez une bonne journee.");
+				
 			}
 		}
 	}
